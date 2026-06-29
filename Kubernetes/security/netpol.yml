@@ -1,0 +1,66 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+
+metadata:
+  name: three-networkpolicy
+  namespace: three-tier
+
+spec:
+  podSelector:
+    matchLabels:
+      app: appln
+
+  policyTypes:
+    - Ingress
+    - Egress
+
+  ingress:
+    - {}
+
+  egress:
+    # MySQL
+    - to:
+        - podSelector:
+            matchLabels:
+              app: mysql
+      ports:
+        - protocol: TCP
+          port: 3306
+
+    # RabbitMQ
+    - to:
+        - podSelector:
+            matchLabels:
+              app: rabbitmq
+      ports:
+        - protocol: TCP
+          port: 5672
+
+    # Memcached
+    - to:
+        - podSelector:
+            matchLabels:
+              app: memcached
+      ports:
+        - protocol: TCP
+          port: 11211
+
+    # Elasticsearch
+    - to:
+        - podSelector:
+            matchLabels:
+              app: elasticsearch
+      ports:
+        - protocol: TCP
+          port: 9300
+
+    # DNS (CoreDNS / kube-dns)
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53

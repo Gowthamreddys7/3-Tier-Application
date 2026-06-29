@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: memcached-deployment
+  namespace: three-tier
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: memcached
+
+  template:
+    metadata:
+      labels:
+        app: memcached
+
+    spec:
+      containers:
+        - name: memcached
+          image: memcached:latest
+
+          ports:
+            - containerPort: 11211
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"

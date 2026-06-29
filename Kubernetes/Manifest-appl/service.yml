@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: three-service
+  namespace: three-tier
+
+spec:
+  type: clusterIP
+
+  selector:
+    app: appln
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30080

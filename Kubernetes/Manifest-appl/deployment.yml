@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: three-deployment
+  namespace: three-tier
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: appln
+
+  template:
+    metadata:
+      labels:
+        app: appln
+
+    spec:
+      containers:
+        - name: cont3
+          image: gowthamreddy7/vprofile-app:v2
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 8080
+
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "100Mi"
+            limits:
+              cpu: "500m"
+              memory: "300Mi"    

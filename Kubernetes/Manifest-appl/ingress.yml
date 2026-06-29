@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: three-ingress
+  namespace: three-tier
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+    - host: vprofile.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: three-service
+                port:
+                  number: 80
