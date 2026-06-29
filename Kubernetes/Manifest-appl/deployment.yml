@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: cont3
-          image: gowthamreddy7/vprofile-app:v2
+          image: gowthamreddy7/vprofile-app:v1
           imagePullPolicy: Always
 
           ports:
