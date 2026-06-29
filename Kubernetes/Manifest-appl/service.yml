@@ -5,7 +5,7 @@ metadata:
   namespace: three-tier
 
 spec:
-  type: clusterIP
+  type: ClusterIP
 
   selector:
     app: appln
