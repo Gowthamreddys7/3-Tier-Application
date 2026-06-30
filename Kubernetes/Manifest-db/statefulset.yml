@@ -34,10 +34,10 @@ spec:
           resources:
             requests:
               cpu: "300m"
-              memory: "100Mi"
+              memory: "256Mi"
             limits:
               cpu: "500m"
-              memory: "200Mi"
+              memory: "512Mi"
 
       volumes:
         - name: mysql-storage
