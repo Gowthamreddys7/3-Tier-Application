@@ -9,8 +9,7 @@ spec:
   ingressClassName: nginx
 
   rules:
-    - host: vprofile.local
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
